@@ -2,6 +2,7 @@
 
 ## Preview
 ![](demo1.gif)
+<img src="demo1.gif" width="240" height="500" 
 ![](demo2.gif)
 
 ## Features include:
