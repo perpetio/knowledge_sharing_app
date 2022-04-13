@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.CreatePostActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/main_blue"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="@string/create_post"
+        app:titleTextColor="@android:color/white" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_title"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/bg_input"
+        android:fontFamily="@font/opensans_regular"
+        android:hint="@string/enter_title"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:textColor="@color/main_dark_blue"
+        android:textColorHint="@color/main_dark_blue" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_description"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/bg_input"
+        android:fontFamily="@font/opensans_regular"
+        android:gravity="top"
+        android:hint="@string/enter_post"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:textColor="@color/main_dark_blue"
+        android:textColorHint="@color/main_dark_blue" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_link"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/bg_input"
+        android:fontFamily="@font/opensans_regular"
+        android:hint="@string/enter_link"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:textColor="@color/main_dark_blue"
+        android:textColorHint="@color/main_dark_blue" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_photo" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_add_photo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/btn_add" />
+    </FrameLayout>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btn_create"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_blue"
+        android:fontFamily="@font/opensans_bold"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/post"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeTextType="uniform" />
+
+</LinearLayout>

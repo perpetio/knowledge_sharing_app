@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/feedFragment">
+
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.perpetio.knowledgesharingapp.fragment.FeedFragment"
+        android:label="FeedFragment" />
+    <fragment
+        android:id="@+id/chatsFragment"
+        android:name="com.perpetio.knowledgesharingapp.fragment.ChatsFragment"
+        android:label="ChatsFragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.perpetio.knowledgesharingapp.fragment.SettingFragment"
+        android:label="SettingFragment" />
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.perpetio.knowledgesharingapp.fragment.UsersFragment"
+        android:label="UsersFragment" />
+</navigation>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/feedFragment"
+        android:icon="@drawable/home_selector"
+        android:title="@string/feed" />
+
+    <item
+        android:id="@+id/chatsFragment"
+        android:icon="@drawable/chat_selector"
+        android:title="@string/chats" />
+
+    <item
+        android:id="@+id/settingFragment"
+        android:icon="@drawable/settings_selector"
+        android:title="@string/settings" />
+
+
+</menu>

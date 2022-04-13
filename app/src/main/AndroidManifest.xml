@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.perpetio.knowledgesharingapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.KnowledgeSharing.NoActionBar">
+        <activity
+            android:name="com.perpetio.knowledgesharingapp.activity.WelcomeActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.KnowledgeSharing.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.perpetio.knowledgesharingapp.activity.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.KnowledgeSharing.NoActionBar" />
+        <activity
+            android:name="com.perpetio.knowledgesharingapp.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.perpetio.knowledgesharingapp.activity.EmployeeRegistrationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.perpetio.knowledgesharingapp.activity.CompanyRegistrationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.perpetio.knowledgesharingapp.activity.SavePostsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.perpetio.knowledgesharingapp.activity.CreatePostActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PostDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.UpdateProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CreateChatActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.ChatActivity" />
+        <activity android:name=".activity.CreateUserActivity" />
+        <activity android:name=".activity.ChangePasswordActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

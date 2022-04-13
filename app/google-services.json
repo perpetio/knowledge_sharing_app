@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "10791456292",
+    "firebase_url": "https://knowledge-sharing-app-5da27-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "knowledge-sharing-app-5da27",
+    "storage_bucket": "knowledge-sharing-app-5da27.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10791456292:android:98cfe3093657905a43d2b1",
+        "android_client_info": {
+          "package_name": "com.perpetio.knowledgesharingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10791456292-eoudjmvdopfvga7sssgflovveieurqga.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.perpetio.knowledgesharingapp",
+            "certificate_hash": "ad26543116e9e66d6ca0351c0d9bf2e03c3ece6e"
+          }
+        },
+        {
+          "client_id": "10791456292-s8erdannvaqmgen1encte69435qaj9vb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHPQ3g3QFbE-77pWHy8M9Blm6hktQDZD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10791456292-s8erdannvaqmgen1encte69435qaj9vb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
