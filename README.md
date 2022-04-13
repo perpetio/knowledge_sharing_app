@@ -1,4 +1,6 @@
 # Knowledge sharing app
+App for company employees to create a posts with the information they would like to share with their colleagues. It can be a text with some tips, links to the videos or articles, or any other form of content.  
+
 
 ## Preview
 ![](demo1.gif) 
