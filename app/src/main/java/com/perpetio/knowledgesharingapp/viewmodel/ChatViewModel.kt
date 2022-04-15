@@ -63,10 +63,8 @@ class ChatViewModel : BaseLogicViewModel() {
         }
     }
 
-    fun createChatMessage(message: Message, user: User) {
-        if (message.image != null) {
-            saveImage(message)
-        }
+    fun createChatMessage(message: Message) {
+
         val data = hashMapOf(
             Const.KEY_TEXT to message.text,
             Const.KEY_CHAT_ID to message.chatId,
@@ -78,7 +76,12 @@ class ChatViewModel : BaseLogicViewModel() {
         db.collection(Const.FOLDER_MESSAGES)
             .add(data)
             .addOnSuccessListener {
-                state.value = ViewModelState.LoadedItem(message)
+                if (message.image != null) {
+                    message.id = it.id
+                    saveImage(message)
+                } else {
+                    state.value = ViewModelState.LoadedItem(message)
+                }
             }
             .addOnFailureListener {
                 state.value = ViewModelState.Error(it.localizedMessage)
@@ -163,7 +166,7 @@ class ChatViewModel : BaseLogicViewModel() {
             .document(message.id ?: "")
             .set(data, SetOptions.merge())
             .addOnSuccessListener {
-                state.value = ViewModelState.Loaded
+                state.value = ViewModelState.LoadedItem(message)
             }
             .addOnFailureListener {
                 state.value = ViewModelState.Error(it.localizedMessage)

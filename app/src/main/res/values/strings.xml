@@ -67,4 +67,7 @@
     <string name="hint_new_password_enter">Enter your new password</string>
     <string name="submit">Submit</string>
     <string name="owner">Owner</string>
+    <string name="send">Send</string>
+    <string name="email">Email:</string>
+    <string name="job_title">Job title:</string>
 </resources>

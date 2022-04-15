@@ -53,6 +53,7 @@ class FeedAdapter(val listener: FeedClickListener) :
         private val btnLike: ImageView
         private val btnSave: ImageView
         private val link: TextView
+        private val content: ViewGroup
         var isPostSaved: Boolean = false
         var isPostLiked: Boolean = false
 
@@ -65,6 +66,7 @@ class FeedAdapter(val listener: FeedClickListener) :
             btnLike = itemView.findViewById(R.id.btn_like)
             btnSave = itemView.findViewById(R.id.btn_save)
             link = itemView.findViewById(R.id.link)
+            content = itemView.findViewById(R.id.layout_content)
         }
 
         fun bind(model: Feed) {
@@ -81,20 +83,27 @@ class FeedAdapter(val listener: FeedClickListener) :
                         .placeholder(R.drawable.user_placeholder)
                         .circleCrop()
                         .into(userAvatar)
+                    userAvatar.setOnClickListener {
+                        model.userId?.let { it1 -> listener.onProfileClick(it1) }
+                    }
                 }
-                if (model.image != null) {
+                val url = model.image
+                if (url != null) {
                     image.isVisible = true
                     Glide.with(itemView.context)
                         .load(model.image)
                         .placeholder(R.drawable.placeholder_photo)
                         .into(image)
+                    image.setOnClickListener {
+                        listener.onImageClick(url)
+                    }
                 } else {
                     image.isVisible = false
                 }
                 userName.text = model.userName
                 title.text = model.title
                 description.text = model.description
-                itemView.setOnClickListener {
+                content.setOnClickListener {
                     listener.onFeedClick(model)
                 }
             }
@@ -163,6 +172,8 @@ class FeedAdapter(val listener: FeedClickListener) :
         fun onFeedClick(feed: Feed)
         fun onSavedPost(feed: Feed)
         fun onLikedPost(feed: Feed)
+        fun onProfileClick(userId: String)
+        fun onImageClick(url: String)
     }
 
 }

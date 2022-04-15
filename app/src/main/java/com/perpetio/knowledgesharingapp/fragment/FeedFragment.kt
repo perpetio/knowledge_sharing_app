@@ -9,11 +9,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.paris.girl.easycook.utils.PrefUtils
 import com.perpetio.knowledgesharingapp.activity.CreatePostActivity
+import com.perpetio.knowledgesharingapp.activity.ImagePreviewActivity
 import com.perpetio.knowledgesharingapp.activity.PostDetailsActivity
+import com.perpetio.knowledgesharingapp.activity.PreviewProfileActivity
 import com.perpetio.knowledgesharingapp.adapter.FeedAdapter
 import com.perpetio.knowledgesharingapp.databinding.FragmentFeedBinding
 import com.perpetio.knowledgesharingapp.model.BaseModel
 import com.perpetio.knowledgesharingapp.model.Feed
+import com.perpetio.knowledgesharingapp.utils.Const
 import com.perpetio.knowledgesharingapp.utils.Const.Companion.KEY_FEED
 import com.perpetio.knowledgesharingapp.viewmodel.ViewModelState
 import com.perpetio.knowledgesharingapp.viewmodel.FeedViewModel
@@ -40,6 +43,18 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
 
         override fun onLikedPost(feed: Feed) {
             viewModel.likeOrUnLikeFeed(feed)
+        }
+
+        override fun onProfileClick(userId: String) {
+            val intent = Intent(requireContext(), PreviewProfileActivity::class.java)
+            intent.putExtra(Const.KEY_USER_ID, userId)
+            startActivity(intent)
+        }
+
+        override fun onImageClick(url: String) {
+            val intent = Intent(requireContext(), ImagePreviewActivity::class.java)
+            intent.putExtra(Const.KEY_IMAGE, url)
+            startActivity(intent)
         }
 
     }

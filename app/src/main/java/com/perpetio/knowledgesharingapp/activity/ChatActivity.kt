@@ -1,5 +1,7 @@
 package com.perpetio.knowledgesharingapp.activity
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -7,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.paris.girl.easycook.utils.PrefUtils
 import com.perpetio.knowledgesharingapp.adapter.MessagesAdapter
 import com.perpetio.knowledgesharingapp.databinding.ActivityChatBinding
+import com.perpetio.knowledgesharingapp.dialog.SendImageDialog
 import com.perpetio.knowledgesharingapp.model.Message
 import com.perpetio.knowledgesharingapp.model.User
 import com.perpetio.knowledgesharingapp.utils.Const
@@ -14,11 +17,27 @@ import com.perpetio.knowledgesharingapp.viewmodel.ViewModelState
 import com.perpetio.knowledgesharingapp.viewmodel.ChatViewModel
 import kotlinx.coroutines.flow.collect
 
-class ChatActivity : BaseActivity<ActivityChatBinding>(ActivityChatBinding::inflate) {
+class ChatActivity : PhotoPickerActivity<ActivityChatBinding>(ActivityChatBinding::inflate) {
     val viewModel: ChatViewModel by viewModels()
-    val adapter: MessagesAdapter = MessagesAdapter()
     var chatId: String? = null
     val user: User? = PrefUtils.with(this).getUser()
+
+    private val messageClickListener: MessagesAdapter.MessageClickListener =
+        object : MessagesAdapter.MessageClickListener {
+            override fun onImageClick(url: String) {
+                val intent = Intent(this@ChatActivity, ImagePreviewActivity::class.java)
+                intent.putExtra(Const.KEY_IMAGE, url)
+                startActivity(intent)
+            }
+
+            override fun onProfileClick(userId: String) {
+                val intent = Intent(this@ChatActivity, PreviewProfileActivity::class.java)
+                intent.putExtra(Const.KEY_USER_ID, userId)
+                startActivity(intent)
+            }
+
+        }
+    val adapter: MessagesAdapter = MessagesAdapter(messageClickListener)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,11 +66,14 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(ActivityChatBinding::infl
                     val message =
                         Message("", comment, chatId, null, user?.id, System.currentTimeMillis())
                     if (user != null) {
-                        viewModel.createChatMessage(message, user)
+                        viewModel.createChatMessage(message)
                     }
                     etMessage.setText("")
                     hideKeyboard()
                 }
+            }
+            btnSendImage.setOnClickListener {
+                showPickerDialog()
             }
         }
     }
@@ -86,11 +108,29 @@ class ChatActivity : BaseActivity<ActivityChatBinding>(ActivityChatBinding::infl
 
     private fun showList(list: List<Message>) {
         adapter.submitList(list)
+        binding.recyclerview.layoutManager?.scrollToPosition(adapter.itemCount - 1)
         hideProgress()
     }
 
 
     override fun getViewBinding(): ActivityChatBinding {
         return ActivityChatBinding.inflate(layoutInflater)
+    }
+
+    override fun openImage(data: Uri?) {
+        val dialog = SendImageDialog(this, binding.etMessage.text.toString(), data.toString())
+        dialog.setOnDismissListener {
+            val message =
+                Message(
+                    "",
+                    binding.etMessage.text.toString(),
+                    chatId,
+                    data.toString(),
+                    user?.id,
+                    System.currentTimeMillis()
+                )
+            viewModel.createChatMessage(message)
+        }
+        dialog.show()
     }
 }

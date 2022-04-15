@@ -30,11 +30,19 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_gravity="bottom"
+        android:layout_margin="10dp"
         android:background="@drawable/bg_input_send"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="1dp"
         app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_send_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            app:srcCompat="@drawable/ic_add_image" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_message"

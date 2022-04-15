@@ -13,7 +13,8 @@ import com.perpetio.knowledgesharingapp.model.Chat
 import com.perpetio.knowledgesharingapp.model.Message
 import com.perpetio.knowledgesharingapp.model.User
 
-class MessagesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MessagesAdapter(val listener: MessageClickListener) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var messagesList: MutableList<Message> = mutableListOf()
     var recipientUser: User? = null
 
@@ -27,6 +28,7 @@ class MessagesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         messagesList.add(message)
         notifyItemInserted(messagesList.size - 1)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View
         view =
@@ -74,11 +76,17 @@ class MessagesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 if (model.image == null) {
                     image.isVisible = false
                 } else {
+                    val url: String? = model.image
                     image.isVisible = true
                     Glide.with(itemView.context)
-                        .load(model.image)
+                        .load(url)
                         .placeholder(R.drawable.placeholder_photo)
                         .into(image)
+                    image.setOnClickListener {
+                        if (url != null) {
+                            listener.onImageClick(url)
+                        }
+                    }
                 }
                 text.text = model.text
 
@@ -88,11 +96,17 @@ class MessagesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 if (model.image == null) {
                     imageRight.isVisible = false
                 } else {
+                    val url = model.image
                     imageRight.isVisible = true
                     Glide.with(itemView.context)
-                        .load(model.image)
+                        .load(url)
                         .placeholder(R.drawable.placeholder_photo)
                         .into(imageRight)
+                    imageRight.setOnClickListener {
+                        if (url != null) {
+                            listener.onImageClick(url)
+                        }
+                    }
                 }
                 textRight.text = model.text
             }
@@ -103,7 +117,18 @@ class MessagesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 .circleCrop()
                 .into(userAvatar)
 
+            userAvatar.setOnClickListener {
+                if (oponentUserId != null) {
+                    listener.onProfileClick(oponentUserId)
+                }
+            }
+
         }
+    }
+
+    interface MessageClickListener {
+        fun onImageClick(url: String)
+        fun onProfileClick(userId: String)
     }
 
 }

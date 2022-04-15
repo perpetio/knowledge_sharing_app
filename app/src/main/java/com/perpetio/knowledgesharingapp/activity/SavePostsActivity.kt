@@ -41,6 +41,18 @@ class SavePostsActivity :
             viewModel.likeOrUnLikeFeed(feed)
         }
 
+        override fun onProfileClick(userId: String) {
+            val intent = Intent(this@SavePostsActivity, PreviewProfileActivity::class.java)
+            intent.putExtra(Const.KEY_USER_ID, userId)
+            startActivity(intent)
+        }
+
+        override fun onImageClick(url: String) {
+            val intent = Intent(this@SavePostsActivity, ImagePreviewActivity::class.java)
+            intent.putExtra(Const.KEY_IMAGE, url)
+            startActivity(intent)
+        }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

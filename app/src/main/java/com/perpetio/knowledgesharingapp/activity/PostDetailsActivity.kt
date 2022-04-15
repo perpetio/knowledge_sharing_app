@@ -1,5 +1,6 @@
 package com.perpetio.knowledgesharingapp.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -104,14 +105,26 @@ class PostDetailsActivity :
                 .placeholder(R.drawable.user_placeholder)
                 .circleCrop()
                 .into(userAvatar)
+            userAvatar.setOnClickListener {
+                val intent = Intent(this@PostDetailsActivity, PreviewProfileActivity::class.java)
+                intent.putExtra(Const.KEY_USER_ID, feed?.userId)
+                startActivity(intent)
+            }
             feedTitle.text = feed?.title
             feedDescription.text = feed?.description
-            if (feed?.image != null) {
+            val url = feed?.image
+            if (url != null) {
                 image.isVisible = true
                 Glide.with(this@PostDetailsActivity)
-                    .load(feed?.image)
+                    .load(url)
                     .placeholder(R.drawable.placeholder_photo)
                     .into(image)
+
+                image.setOnClickListener {
+                    val intent = Intent(this@PostDetailsActivity, ImagePreviewActivity::class.java)
+                    intent.putExtra(Const.KEY_IMAGE, url)
+                    startActivity(intent)
+                }
             } else {
                 image.isVisible = false
             }
